@@ -1,0 +1,264 @@
+\documentclass[justified]{tufte-handout}
+%%\documentclass[]{tufte-handout}
+
+%\geometry{showframe}% for debugging purposes -- displays the margins
+\usepackage{color,booktabs,graphicx}
+\usepackage{hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=blue,
+			urlcolor=blue,
+            anchorcolor=darkblue,
+			citecolor=darkblue,
+			}
+\usepackage{amsmath}
+
+% Set up the images/graphics package
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+\title{Physics 261: Computational Physics --- Syllabus}
+\author[Paul A. Nakroshis]{Paul A. Nakroshis}
+\date{Spring 2023}  % if the \date{} command is left out, the current date will be used
+
+% The following package makes prettier tables.  We're all about the bling!
+\usepackage{booktabs}
+
+% The units package provides nice, non-stacked fractions and better spacing
+% for units.
+\usepackage{units}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+% Small sections of multiple columns
+\usepackage{multicol}
+
+% Provides paragraphs of dummy text
+\usepackage{lipsum}
+
+% These commands are used to pretty-print LaTeX commands
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+\widowpenalty=1000000
+\begin{document}
+\maketitle% this prints the handout title, author, and date
+  \begin{marginfigure} [7\baselineskip]\includegraphics[width=2in]{USM_Phy261_logo.png} \end{marginfigure}
+
+\begin{abstract}
+\noindent Physics 261: Computational Physics I is an introductory course on
+scientific programming using the Julia programming language. We will work primarily 
+using Jupyter Notebooks, which allow you to mix text, graphics, mathematical equations (using
+ \LaTeX\ ) and, of course Julia code, in your reports.  By the 
+end of the semester, you should feel comfortable using Julia to solve everyday 
+problems, from data analysis to numerical simulation. Along the way, you will gain experience
+with the linux terminal, and logging into a JupyterHub server. 
+ \end{abstract}
+ %\printclassoptions
+
+\section{Introduction}\label{sec:page-layout}
+Suppose you take an introductory calculus-based physics course; you will 
+have learned all about Newton's laws of motion and solved many problems
+with an analytical approach. However, one problem you will not have solved
+is a simple problem of throwing a ball while including air resistance. One of the reasons 
+you didn't solve this problem is that it's impossible to solve analytically, since air resistance is 
+a non-linear force\footnote{Actually, it's even worse---air resistance is not really a simple function of velocity at all; for low velocities, one can approximate the air resistance as linear, and but as the speed increases, it's not even correct to treat it as a simple function of the velocity to a fixed power.} However, adding air resistance which is proportional to the square of the particle's velocity, while impossible to solve analytically, is not so complicated to solve computationally. 
+
+So, one of the great uses of computation is to be able to solve problems 
+via computer that are difficult or impossible to solve with pen and paper.
+Such problems can range from solving non-linear differential equations, to
+systems which involve random processes (for instance,
+diffusion, or disease propagation), and even the everyday work of processing and visualizing data.
+In this class, I will introduce you to the Plots.jl package (and possibly Makie.jl) (useful for visualizing data and functions), and build up your 
+facility with the Julia language so that you will walk away with a toolset that you can
+use throughout your scientific career. 
+
+\section*{Background}
+
+For over a hundred years, physics departments around the world have taught undergraduate physics by emphasizing the solution of problems which admit of an analytical solution.
+ However, in recent decades, computer power has increased significantly and a modern laptop has the speed that far exceeds that of a mainframe computer from decades past.
+
+However, given that most undergraduates now own a laptop computer, it makes no sense to restrict our teaching to analytically solvable questions.
+Many physics departments now have a computing requirement, or even their own computational physics course, but few go beyond this.
+
+At USM, we are modifying our curriculum to include computing throughout our major's degree. The first step in this is to teach computational physics every spring semester, so that entering freshmen have the needed experience to use computation throughout all their upper level courses.
+
+Because computing is important to many disciplines—engineering, linguistics, business, mathematics, statistics, biology, chemistry for example—our hope is that our computational physics course can serve as a computing course that many majors can use to satisfy their degree's computing requirement.
+
+\section*{Skills/Learning Outcomes}
+By the end of the semester, my expectation is that you will gain experience in the following:
+\begin{enumerate}
+\item The Bash Shell (basic commands like ls, cd, mv, rmdir, etc)
+\item Logging into a JupyterHub server and using the Jupyter Lab and Jupyter Notebbook interfaces
+\item Learning how to install and maintain a working Julia distribution on your own computer.
+\item Uploading data and .ipynb files to the server
+\item Using Github for version control 
+\item Learning the basics data types, and control structures in Julia
+\item Reading in and writing data files in multiple formats
+\item Become proficient in using Markdown syntax and incorporating basic \LaTeX\ code to typeset mathematics.
+\item Become proficient in technical written communication.
+\item Learn how to use the Euler, Euler-Cromer, Verlet, and Runge-Kutta methods for solving ordinary homogeneous and inhomogeneous differential equations.
+\item Using simulation to solve random systems (random walks in 1 and 2 dimensions, percolation theory) 
+\item Use Julia to read in data, make technical plots, perform fits to the data, as well as the uncertainties in the fit parameters.
+\item Simulate the motion of simple systems such as projectile motion, planetary motion (with and without air resistance)
+\item Explore the behavior of chaotic systems such as a driven non-linear oscillator, or the logistic map
+\item Work together on a team to solve a larger programming project, all coordinated using version control.
+\item Walk away from class with a computational toolset that can be used for all further coursework, and provides a framework of understanding relevant to a STEM Career and further scientific work. 
+\end{enumerate}
+
+
+\section{Required Textbooks}
+
+\textbf{Think Julia}, by Allen Downey, Ben Lauwens, 2018.\\
+ISBN 978-1492045038\\
+This book is also available for free online at\\
+ \href{https://benlauwens.github.io/ThinkJulia.jl/latest/book.html}{https://benlauwens.github.io/ThinkJulia.jl/latest/book.html}
+ 
+\section{Required account}
+I will ask every student to sign up for a free account on GitHub. I may be using 
+\href{http://classroom.github.com}{Github Classroom} to distribute assignments and projects; if so, you will be submitting your assignments to Github Classroom when complete. More about this on the first day of class, as I haven't yet decided on Github Classroom. 
+
+\section{Atendance Policy}
+I expect that everyone will be at every class except in extenuating circumstances. 
+In every class, you will likely be working together on a team, and your presence in class
+is important. If I find that you are missing class too often (i.e. more than three times), 
+you can expect that I will talk with you and that you will likely receive a 
+lower grade for the course, or asked to leave if this repeated absence is coupled 
+with poor quality work written work. 
+
+\section{Outside Help/Student Hours}
+I have an office/lab in room 252 science---you have to go through room 250 to reach it. 
+In general, if my office or laboratory door is open, I am happy to help you, so feel free to stop in
+and ask questions. I have set aside several hours
+where I will make a point to be in my office. Please take advantage of my
+willingness to help you! I can be much more effective one-on-one than I can in
+front of the whole class. 
+
+Also, keep in mind that our LA (Jason Pichette)  will also have help hours, and you should make use of his willingness to help. 
+
+\section{Grading}
+I am unfortunately contractually obligated to submit a grade for every student. Grading is subjective, and I do my best to submit a grade which represents my sense of your level of understanding and your level of improvement in understanding for the course. 
+
+This course will consist of shorter \textbf{assignments} (more toward the beginning of the course) and longer \textbf{projects} which will require a formal report. In addition, there may be occasional quizzes, and likely group reports. You will get regular feedback on each assignment and each report, as well as on your final written report. In attempt to make this quantitative, Table~\ref{tab:normaltab} shows the grading scheme ( Late assignments and project reports {\bfseries will not} be accepted--turn in what you have by the due date.) Your work in this class is in learning the Julia Language ecosystem and applying your knowledge of this to simulate physical systems. This task is your homework, and is the overarching skillset you will be building outside of class.  \\
+\begin{table}[h]
+  \centering
+  \fontfamily{ppl}\selectfont
+  \begin{tabular}{ll}
+    \toprule
+    Item &  Points\\
+    \midrule
+    Attendance $\times$ Perceived Effort & 100 \\
+    Assignments* \& Projects* &  600 \\
+    Quizzes & 100\\
+    Final Project & 100\\
+    Final Project presentation & 100\\
+    {\bf TOTAL} & 1000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Grading Scheme for the course. *Late assignments and projects {\bf will not be accepted}.}
+  \label{tab:normaltab}
+  %\zsavepos{pos:normaltab}
+\end{table}
+
+\section{Items to include in Formal Reports}
+Some homework will be relatively straightforward exercises; others will be longer projects. On these more formal reports, here are guidelines for your submitted report. \\
+{\bf Introduction} \\ 
+The introduction should give an overview of the problem and an indication of where it fits into the subject of physics.\\
+{\bf Physics \& Numerical Method} \\ 
+Describe the background physics of the problem, and detail the algorithm that is used to solve the problem. This section should also list relevant snippets of your code to show how it is implemented.  A full listing of your code should always be attached as the last section of your report.\\
+{\bf Verification} \\
+Tell what you did to verify that the program gives correct results; this typically involves showing that your code gives reasonable results for simple cases where an analytic solution is known or obvious.  Generally speaking there should almost always be more than one test used to verify program integrity. You have to convince the reader that your code reproduces known or sensible results. \\
+{\bf Results} \\
+Present the results of running the program to demonstrate the behavior of the system under different circumstances. Results might be presented in graphical form or as tables, as appropriate. Be sure that results that are presented are labeled properly, so that the reader can figure out what has been calculated and what is being displayed. Make sure that all figures and tables should have descriptive captions, and all axes have axes labels with units. Your results will include marksdown cells explaining your work as you go. Remember, you are having a once-sided conversation with the reader, and it behooves \textit{you} to fully paint a clear picture of your thinking process and write this in an engaging manner.  \\
+\noindent{\bf Conclusion} \\
+Present a discussion of the physical behavior of the system based on your simulations, remind the reader of what you have shown, and answer any special questions posed in the assignment.\\
+
+See \href{https://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/projectwriting/html/projectwriting-bs.html}{this link for a different take on writing a report}. It's worth a read. 
+
+\pagebreak
+\section{Instructor Contact Information}
+Paul Nakroshis\\
+Dept of Physics\\
+Lab/Office: Room 252 Science Building\\
+Portland Campus\\
+\hfill {\bf EMail:} {pauln at maine dot edu}\\
+{\bf Web:} \href{portlandphysics.me}{portlandphysics.me}\\ 
+{\bf Github:} \href{https://github.com/paulnakroshis}{https://github.com/paulnakroshis}\\
+{\bf Office/Lab:} 207-780-4158\\
+{\bf Student Hours:}  by appointment\\
+
+
+\section{This document \& other resources}
+ Should you lose this syllabus, an electronic .pdf version of this file (with clickable hyperlinks)  is available online at the \href{portlandphysics.me/physics261}{course homepage}  which can be found at \\ \href{portlandphysics.me/physics261}{http://people.usm.maine.edu/pauln/physics261.html}.\\
+
+\begin{table}[h]
+  \centering
+  \fontfamily{ppl}\selectfont
+  \begin{tabular}{lll}  
+    \toprule
+    Dates &  Topics  \\
+    \midrule
+    18 Jan	         	& Introduction to Julia (I), JupyterLab, Linux \& \LaTeX\   \\
+    23-25 Jan      	& Introduction to Julia (II): variable types				\\    
+   30 Jan - 01 Feb 	& Introduction to Julia (III): Loops, algorithms		 \\
+    06-18 Feb      	& Introduction to Julia (IV): Plots.jl, Make.jl		\\
+    13-15 Feb  		& Kinematics in 1D: Air Resistance (I)      			\\
+    22 Feb		  	& Kinematics in 2D: Gravity (II)           			\\
+   27 Feb - 01 Mar     	& Kinematics in 2D: Gravity (III)       				 \\
+    06 -08 Mar      	& Simple Harmonic Motion (I)            			\\
+    13- 15 Mar		& NO CLASS --- Spring Break 					\\
+    20-22 Mar      	& Simple Harmonic Motion (II)           			\\
+    27 - 29 Mar   	& Data Analysis: Fitting with LsqFit, CurveFit 		 \\
+    03 - 05 Apr      	& Random Processes: diffusion (I)				\\
+    10 - 12 Apr      	& Random Processes: diffusion	 (II)				\\
+    17 - 19 Apr      	& E\&M (I): Laplace's equation					\\
+    24 -26 Apr      	&Q/A for Final Projects	 					\\
+    Final Exam Week  & Project presentation (time/date: TBA)			\\
+  \bottomrule
+  \end{tabular}
+  \caption{Likely schedule of topics; almost everything subject  to change!}
+  \label{tab:normaltab}
+  %\zsavepos{pos:normaltab}
+\end{table}
+
+
+\end{document}
+\begin{table}[h]
+  \centering
+  \fontfamily{ppl}\selectfont
+  \begin{tabular}{lll}  
+    \toprule
+    Dates &  Topics  \\
+    \midrule
+    18 Jan	         	& Introduction to Julia (I), JupyterLab, Linux and  \LaTeX\   \\
+    23-25 Jan      	& Introduction to Julia (II): variable types				\\    
+   30 Jan - 01 Feb 	& Introduction to Julia (III): Loops, algorithms in general	 \\
+    06-18 Feb      	& Introduction to Julia (IV): Plots.jl, Make.jl		\\
+    13-15 Feb  		& Kinematics in 1D: Air Resistance (I)      			\\
+    22 Feb		  	& Kinematics in 2D: Gravity (II)           			\\
+   27 Feb - 01 Mar     	& Kinematics in 2D: Gravity (III)       				 \\
+    06 -08 Mar      	& Simple Harmonic Motion (I)            			\\
+    13- 15 Mar		& NO CLASS --- Spring Break 					\\
+    20-22 Mar      	& Simple Harmonic Motion (II)           			\\
+    27 - 29 Mar   	& Data Analysis: Fitting with LsqFit, CurveFit 		 \\
+    03 - 05 Apr      	& Random Processes: diffusion (I)				\\
+    10 - 12 Apr      	& Random Processes: diffusion	 (II)				\\
+    17 - 19 Apr      	& E\&M (I): Laplace's equation					\\
+    24 -26 Apr      	&Q/A for Final Projects	 					\\
+    Final Exam Week  & Project presentation (time/date: TBA)			\\
+  \bottomrule
+  \end{tabular}
+  \caption{Schedule of topics; subject to change!}
+  \label{tab:normaltab}
+  %\zsavepos{pos:normaltab}
+\end{table}
